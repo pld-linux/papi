@@ -1,0 +1,25 @@
+--- papi-1.0_beta/source/libpapi-common/uri.c.orig	2005-09-21 21:04:53.000000000 +0200
++++ papi-1.0_beta/source/libpapi-common/uri.c	2010-04-02 09:38:15.848988896 +0200
+@@ -15,22 +15,6 @@
+ #include <errno.h>
+ #include "uri.h"
+ 
+-static char *
+-strndup(char *string, size_t length)
+-{
+-	char *result = NULL;
+-
+-	if (length > 0) {
+-		length++;
+-
+-
+-		if ((result = calloc(1, length)) != NULL)
+-			(void) strlcat(result, string, length);
+-	}
+-
+-	return (result);
+-}
+-
+ 
+ /*
+  * This will handle the following forms:
