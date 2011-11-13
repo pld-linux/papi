@@ -1,0 +1,26 @@
+--- papi-1.0_beta/docs/man/Makefile.am.orig	2006-03-12 07:30:42.000000000 +0100
++++ papi-1.0_beta/docs/man/Makefile.am	2011-11-13 12:17:58.690950257 +0100
+@@ -5,17 +5,14 @@
+ # $Id$
+ #
+ 
+-man_MANS_in  = lpq.1b.in lpr.1b.in lprm.1b.in lpc.1b.in
+-man_MANS_in += lpstat.1.in lp.1.in cancel.1.in enable.1.in disable.1.in
+-man_MANS_in += lpmove.1m.in accept.1m.in reject.1m.in
+-man_MANS_in += psm-ipp.5.in
++mans1_in  = lpq.1b.in lpr.1b.in lprm.1b.in lpc.1b.in
++mans1_in += lpstat.1.in lp.1.in cancel.1.in enable.1.in disable.1.in
++mans1_in += lpmove.1m.in accept.1m.in reject.1m.in
++mans5_in = psm-ipp.5.in
+ 
+ 
+-man_MANS=$(man_MANS_in:%.in=%)
+-man_MANS += lpq.1b lpr.1b lprm.1b lpc.1b
+-man_MANS += lpstat.1 lp.1 cancel.1 enable.1 disable.1
+-man_MANS += lpmove.1m accept.1m reject.1m
+-man_MANS += psm-ipp.5
++man1_MANS=$(mans1_in:%.in=%)
++man5_MANS=$(mans5_in:%.in=%)
+ 
+ SUFFIXES = .in
+ 

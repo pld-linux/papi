@@ -23,3 +23,14 @@
  
  /*
   * This will handle the following forms:
+--- papi-1.0_beta/configure.in.orig	2006-03-12 07:15:33.000000000 +0100
++++ papi-1.0_beta/configure.in	2011-11-13 09:40:56.380634763 +0100
+@@ -29,7 +29,7 @@
+ AC_PROG_GCC_TRADITIONAL
+ 
+ dnl Check for libraries
+-AC_SEARCH_LIBS(rresvport,socket,,nsl)
++AC_SEARCH_LIBS(rresvport,socket nsl)
+ AC_SEARCH_LIBS(rresvport_af,nsl socket,[AC_DEFINE(HAVE_RRESVPORT_AF, 1,
+ 	[define if you have rresvport_af])],)
+ AC_SEARCH_LIBS(getipnodebyname,nsl socket,[AC_DEFINE(HAVE_GETIPNODEBYNAME, 1,

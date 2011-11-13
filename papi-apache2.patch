@@ -1,0 +1,45 @@
+--- papi-1.0_beta/source/mod_ipp/mod_ipp.c.orig	2006-02-14 07:36:49.000000000 +0100
++++ papi-1.0_beta/source/mod_ipp/mod_ipp.c	2011-11-13 09:58:27.920669971 +0100
+@@ -27,7 +27,7 @@
+ #include "papi.h"
+ #ifndef APACHE_RELEASE	/* appears to only exist in Apache 1.X */
+ #define	APACHE2
+-#include "apr_compat.h"
++#define ap_table_get apr_table_get
+ #endif
+ 
+ #include <papi.h>
+@@ -170,7 +170,7 @@
+ 	va_end(args);
+ 
+ #ifdef APACHE2
+-	ap_log_rerror(file, line, level, NULL, r, message);
++	ap_log_rerror(file, line, level, APR_SUCCESS, r, message);
+ #else
+ 	ap_log_rerror(file, line, level, r, message);
+ #endif
+@@ -264,6 +264,7 @@
+ 					config->default_svc);
+ 	}
+ 
++#ifndef APACHE2
+ 	/*
+ 	 * For Trusted Solaris, pass the fd number of the socket connection
+ 	 * to the backend so the it can be forwarded to the backend print
+@@ -272,6 +273,7 @@
+ 	 */
+ 	(void) papiAttributeListAddInteger(&request, PAPI_ATTR_EXCL,
+ 			"peer-socket", ap_bfileno(r->connection->client, B_RD));
++#endif
+ 
+ 	/* process the request */
+ 	status = ipp_process_request(request, &response, read_data, r);
+@@ -375,7 +377,7 @@
+ 
+ /*ARGSUSED0*/
+ static const char *
+-ipp_operation(cmd_parms *cmd, void *cfg, char *op, char *toggle)
++ipp_operation(cmd_parms *cmd, void *cfg, const char *op, const char *toggle)
+ {
+ 	IPPListenerConfig *config = (IPPListenerConfig *)cfg;
+ 	papi_status_t status;
