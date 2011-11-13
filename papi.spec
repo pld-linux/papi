@@ -1,3 +1,4 @@
+# TODO: config file for mod_ipp
 Summary:	Free Standards Group Open Printing API and applications implementation
 Summary(pl.UTF-8):	Implementacja API i aplikacji Free Standards Group Open Printing
 Name:		papi
