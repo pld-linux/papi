@@ -109,6 +109,7 @@ Statyczne Biblioteki Free Standards Group Open Printing API.
 CPPFLAGS="$(apr-1-config --cppflags) $(apu-1-config --includes)"
 # debug.h and http.h are too common, use include subdir
 %configure \
+	--with-apache=%{_prefix} \
 	--includedir=%{_includedir}/papi \
 	--enable-static
 %{__make}
