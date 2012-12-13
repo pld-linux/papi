@@ -1,0 +1,11 @@
+--- papi-1.0_beta/source/mod_ipp/mod_ipp.c~	2012-12-13 12:52:47.190693398 +0100
++++ papi-1.0_beta/source/mod_ipp/mod_ipp.c	2012-12-13 12:55:02.450688626 +0100
+@@ -170,7 +170,7 @@
+ 	va_end(args);
+ 
+ #ifdef APACHE2
+-	ap_log_rerror(file, line, level, APR_SUCCESS, r, message);
++	ap_log_rerror(file, line, level, APR_SUCCESS, r, "%s", message);
+ #else
+ 	ap_log_rerror(file, line, level, r, message);
+ #endif

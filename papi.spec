@@ -4,7 +4,7 @@ Summary(pl.UTF-8):	Implementacja API i aplikacji Free Standards Group Open Print
 Name:		papi
 Version:	1.0
 %define	subver	beta
-Release:	0.%{subver}.1
+Release:	0.%{subver}.2
 License:	CDDL, MIT (libpapi-cups), LGPL v2+ (NSS for printers)
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/openprinting/%{name}-%{version}_%{subver}.tar.bz2
@@ -12,6 +12,7 @@ Source0:	http://downloads.sourceforge.net/openprinting/%{name}-%{version}_%{subv
 Patch0:		%{name}-glibc.patch
 Patch1:		%{name}-apache2.patch
 Patch2:		%{name}-install.patch
+Patch3:		format-security.patch
 URL:		http://openprinting.sourceforge.net/
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	apr-devel >= 1:1.0
@@ -99,6 +100,7 @@ Statyczne Biblioteki Free Standards Group Open Printing API.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
