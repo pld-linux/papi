@@ -114,12 +114,13 @@ CPPFLAGS="$(apr-1-config --cppflags) $(apu-1-config --includes)"
 	--with-apache=%{_prefix} \
 	--includedir=%{_includedir}/papi \
 	--enable-static
-%{__make}
+
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # modules dlopened by psm-*.so
