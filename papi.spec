@@ -13,6 +13,7 @@ Patch0:		%{name}-glibc.patch
 Patch1:		%{name}-apache2.patch
 Patch2:		%{name}-install.patch
 Patch3:		format-security.patch
+Patch4:		%{name}-apache24.patch
 URL:		http://openprinting.sourceforge.net/
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	apr-devel >= 1:1.0
@@ -101,6 +102,7 @@ Statyczne Biblioteki Free Standards Group Open Printing API.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__libtoolize}

@@ -1,0 +1,64 @@
+--- papi-1.0_beta/source/mod_ipp/mod_ipp.c.orig	2014-12-28 18:46:04.022200871 +0000
++++ papi-1.0_beta/source/mod_ipp/mod_ipp.c	2014-12-28 19:08:43.342152920 +0000
+@@ -152,7 +152,7 @@
+ #endif
+ }
+ 
+-void _log_rerror(const char * file, int line, int level, request_rec *r,
++void _log_rerror(const char * file, int line, int level, const request_rec *r,
+ 	const char *fmt, ...)
+ {
+ 	va_list args;
+@@ -170,14 +170,14 @@
+ 	va_end(args);
+ 
+ #ifdef APACHE2
+-	ap_log_rerror(file, line, level, APR_SUCCESS, r, "%s", message);
++	ap_log_rerror(file, line, 0, level, APR_SUCCESS, r, "%s", message);
+ #else
+ 	ap_log_rerror(file, line, level, r, message);
+ #endif
+ }
+ 
+ static int
+-ipp_handler(request_rec *r)
++ipp_handler(struct request_rec *r)
+ {
+ 	papi_attribute_t **request = NULL, **response = NULL;
+ 	IPPListenerConfig *config;
+@@ -218,7 +218,7 @@
+ 	status = ipp_read_message(read_data, r, &request, IPP_TYPE_REQUEST);
+ 
+ 	if (status != PAPI_OK)
+-		_log_rerror(APLOG_MARK, APLOG_ERR, r,
++		_log_rerror(APLOG_MARK, APLOG_ERR, 0, r,
+ 			"read failed: %s\n", papiStatusString(status));
+ #ifdef DEBUG
+ 	papiAttributeListPrint(stderr, request, "request (%d)  ", getpid());
+@@ -279,7 +279,7 @@
+ 	status = ipp_process_request(request, &response, read_data, r);
+ 	if (status != PAPI_OK) {
+ 		errno = 0;
+-		_log_rerror(APLOG_MARK, APLOG_ERR, r,
++		_log_rerror(APLOG_MARK, APLOG_ERR, 0, r,
+ 			"request failed: %s\n", papiStatusString(status));
+ 		discard_data(r);
+ 	}
+@@ -306,7 +306,7 @@
+ 
+ 	status = ipp_write_message(write_data, r, response);
+ 	if (status != PAPI_OK)
+-		_log_rerror(APLOG_MARK, APLOG_ERR, r,
++		_log_rerror(APLOG_MARK, APLOG_ERR, 0, r,
+ 			"write failed: %s\n", papiStatusString(status));
+ #ifdef DEBUG
+ 	fprintf(stderr, "write result: %s\n", papiStatusString(status));
+@@ -319,7 +319,7 @@
+ #ifndef APACHE2
+ 	ap_kill_timeout(r);
+ 	if (ap_rflush(r) < 0)
+-		_log_rerror(APLOG_MARK, APLOG_ERR, r,
++		_log_rerror(APLOG_MARK, APLOG_ERR, 0, r,
+ 			"flush failed, response may not have been sent");
+ #endif
+ 
