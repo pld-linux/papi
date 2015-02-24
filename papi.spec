@@ -1,10 +1,11 @@
 # TODO: config file for mod_ipp
+%define	rel	2
 Summary:	Free Standards Group Open Printing API and applications implementation
 Summary(pl.UTF-8):	Implementacja API i aplikacji Free Standards Group Open Printing
 Name:		papi
 Version:	1.0
 %define	subver	beta
-Release:	0.%{subver}.2
+Release:	0.%{subver}.%{rel}
 License:	CDDL, MIT (libpapi-cups), LGPL v2+ (NSS for printers)
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/openprinting/%{name}-%{version}_%{subver}.tar.bz2
