@@ -34,3 +34,23 @@
  AC_SEARCH_LIBS(rresvport_af,nsl socket,[AC_DEFINE(HAVE_RRESVPORT_AF, 1,
  	[define if you have rresvport_af])],)
  AC_SEARCH_LIBS(getipnodebyname,nsl socket,[AC_DEFINE(HAVE_GETIPNODEBYNAME, 1,
+--- papi-1.0_beta/source/libpapi-lpd/lpd-port.c.orig	2005-09-21 21:22:22.000000000 +0200
++++ papi-1.0_beta/source/libpapi-lpd/lpd-port.c	2020-08-30 19:10:47.554210812 +0200
+@@ -23,7 +23,6 @@
+ #include <errno.h>
+ #include <syslog.h>
+ #include <values.h>
+-#include <stropts.h>	/* for sendfd */
+ #include <sys/uio.h>	/* for sendmsg stuff */
+ #include <pwd.h>
+ #include <sys/sendfile.h>
+--- papi-1.0_beta/source/libpapi-lpd/lpd-misc.c.orig	2005-09-21 21:22:10.000000000 +0200
++++ papi-1.0_beta/source/libpapi-lpd/lpd-misc.c	2020-08-30 19:34:17.756571090 +0200
+@@ -17,7 +17,6 @@
+ #include <sys/socket.h>
+ #include <errno.h>
+ #include <wait.h>
+-#include <stropts.h>
+ #include <papi_impl.h>
+ 
+ #include <config-site.h>

@@ -1,5 +1,5 @@
 # TODO: config file for mod_ipp
-%define	rel	3
+%define	rel	4
 Summary:	Free Standards Group Open Printing API and applications implementation
 Summary(pl.UTF-8):	Implementacja API i aplikacji Free Standards Group Open Printing
 Name:		papi
@@ -22,7 +22,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cups-devel
 BuildRequires:	libmagic-devel
+BuildRequires:	libnsl-devel
+BuildRequires:	libtirpc-devel
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 Requires:	%{name}-libs = %{version}-%{release}
 Provides:	printingclient
 Provides:	printingdaemon
@@ -111,7 +114,7 @@ Statyczne Biblioteki Free Standards Group Open Printing API.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-CPPFLAGS="$(apr-1-config --cppflags) $(apu-1-config --includes)"
+CPPFLAGS="%{rpmcppflags} $(apr-1-config --cppflags) $(apu-1-config --includes) $(pkg-config --cflags libtirpc)"
 # debug.h and http.h are too common, use include subdir
 %configure \
 	--with-apache=%{_prefix} \
