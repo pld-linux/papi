@@ -1,7 +1,8 @@
---- papi-1.0_beta/docs/man/Makefile.am.orig	2006-03-12 07:30:42.000000000 +0100
-+++ papi-1.0_beta/docs/man/Makefile.am	2011-11-13 12:17:58.690950257 +0100
+diff -urNp -x '*.orig' papi-1.0_beta.org/docs/man/Makefile.am papi-1.0_beta/docs/man/Makefile.am
+--- papi-1.0_beta.org/docs/man/Makefile.am	2006-03-12 07:30:42.000000000 +0100
++++ papi-1.0_beta/docs/man/Makefile.am	2023-12-03 22:21:12.047889215 +0100
 @@ -5,17 +5,14 @@
- # $Id$
+ # $Id: Makefile.am,v 1.5 2006/03/12 06:30:42 njacobs Exp $
  #
  
 -man_MANS_in  = lpq.1b.in lpr.1b.in lprm.1b.in lpc.1b.in
